@@ -17,7 +17,7 @@ Run from terminal within the same folder as the original files to be processed.
 ImageJ: SpectaView_to_EasyLEED
 -------------------------------
 
-ImageJ plugin to process SpectaView files and save them into
+ImageJ plugin to process Omicron SpectaView files and save them into
 image sequences that can be opened with EasyLEED.
 
 Installation: copy the file SpectaView_to_EasyLEED.class inside the folder "plugins" within the imagej main folder. Restart ImageJ.
