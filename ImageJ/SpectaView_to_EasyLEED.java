@@ -33,9 +33,6 @@ public class SpectaView_to_EasyLEED  implements PlugIn {
         IJ.run("8-bit");
         IJ.showStatus("Starting Energy: " + initEn + "eV; End Energy: " + endEn + "eV; Energy Step: " + stepEn + "eV");
         imp = IJ.getImage();
-        
-        IJ.log("num slices: " + imp.getT() + " Title: " + imp.getTitle());
-        
         if(imp.isVisible()) {
             if (saveDialog())
                 {IJ.run("Image Sequence... ", "format=TIFF name=" + imp.getTitle() + "_ start=6 digits=3 save");
