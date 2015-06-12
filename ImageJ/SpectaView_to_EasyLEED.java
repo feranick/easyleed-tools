@@ -1,13 +1,12 @@
 /**	Specta_to_EasyLEED conversion utility for ImageJ */
 /**	Nicola Ferralis - ferralis@mit.edu */
-/**	v.1.0-20150103 */
+/**	v.1.1-20150612 */
 /** License: Public Domain */
 
 import ij.*;
 import ij.io.*;
 import ij.gui.*;
 import ij.plugin.*;
-
 
 /**	This plugins open Omicron SpectaView LEED Files to be processed in EasyLEED */
 public class SpectaView_to_EasyLEED  implements PlugIn {
@@ -20,7 +19,7 @@ public class SpectaView_to_EasyLEED  implements PlugIn {
     ImagePlus imp;
     
 	public void run(String arg) {
-        IJ.showStatus("SpectaView to EasyLEED converter v.1.0-20150103 (ferralis@mit.edu)");
+        IJ.showStatus("SpectaView to EasyLEED converter v.1.1-20150612 (ferralis@mit.edu)");
         if (openDialog())
             {if (!IJ.versionLessThan("1.40e"))
                 openFiles();}
@@ -35,7 +34,7 @@ public class SpectaView_to_EasyLEED  implements PlugIn {
         imp = IJ.getImage();
         if(imp.isVisible()) {
             if (saveDialog())
-                {IJ.run("Image Sequence... ", "format=TIFF name=" + imp.getTitle() + "_ start=6 digits=3 save");
+                {IJ.run("Image Sequence... ", "format=TIFF name=" + imp.getTitle() + "_ start=" + initEn + " digits=3 save");
                 IJ.showStatus("Done!");}
         }
 	}
@@ -61,10 +60,6 @@ public class SpectaView_to_EasyLEED  implements PlugIn {
         gd.addMessage("Save Image Sequence for EasyLEED?");
         gd.showDialog();
         if (gd.wasCanceled()) {return false;}
-        initEn = gd.getNextNumber();
-        endEn = gd.getNextNumber();
-        stepEn = gd.getNextNumber();
-        numImages = (int)((endEn-initEn)/stepEn);
         return true;
     }
 }
