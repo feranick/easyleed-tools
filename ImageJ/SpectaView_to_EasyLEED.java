@@ -1,6 +1,6 @@
 /**	Specta_to_EasyLEED conversion utility for ImageJ */
 /**	Nicola Ferralis - ferralis@mit.edu */
-/**	v.1.1-20150612 */
+/**	v.1.2-20150612 */
 /** License: Public Domain */
 
 import ij.*;
@@ -19,7 +19,7 @@ public class SpectaView_to_EasyLEED  implements PlugIn {
     ImagePlus imp;
     
 	public void run(String arg) {
-        IJ.showStatus("SpectaView to EasyLEED converter v.1.1-20150612 (ferralis@mit.edu)");
+        IJ.showStatus("SpectaView to EasyLEED converter v.1.2-20150612 (ferralis@mit.edu)");
         if (openDialog())
             {if (!IJ.versionLessThan("1.40e"))
                 openFiles();}
@@ -28,7 +28,7 @@ public class SpectaView_to_EasyLEED  implements PlugIn {
     
 
 	public void openFiles() {
-        IJ.run("Raw...", "image=[16-bit Unsigned] width=512 height=512 offset=1000 number=" + numImages + " gap=0 little-endian");
+        IJ.run("Raw...", "image=[16-bit Unsigned] width=512 height=512 offset=0 number=" + numImages + " gap=0 little-endian");
         IJ.run("8-bit");
         IJ.showStatus("Starting Energy: " + initEn + "eV; End Energy: " + endEn + "eV; Energy Step: " + stepEn + "eV");
         imp = IJ.getImage();
@@ -51,7 +51,7 @@ public class SpectaView_to_EasyLEED  implements PlugIn {
         initEn = gd.getNextNumber();
         endEn = gd.getNextNumber();
         stepEn = gd.getNextNumber();
-        numImages = (int)((endEn-initEn)/stepEn);
+        numImages = (int)((endEn-initEn)/stepEn)+1;
         return true;
     }
     
